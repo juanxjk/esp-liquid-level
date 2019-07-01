@@ -1,0 +1,11 @@
+{
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": "\\.{c|cpp|h|hpp}$",
+        "isAsync": true,
+        "cmd": "gtags ${workspaceRoot}"
+      }
+    ]
+  }
+}
