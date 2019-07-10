@@ -33,7 +33,22 @@ void gotIP(IPAddress ip, IPAddress netmask, IPAddress gateway)
 {
 		startWebServer();
 }
+void readToSerial()
+{
+	Serial.print("\r\nSensor 1: ");
+	Serial.println(!digitalRead(SENSOR_1));
 
+	Serial.print("\r\nSensor 2: ");
+	Serial.println(!digitalRead(SENSOR_2));
+
+	Serial.print("\r\nSensor 3: ");
+	Serial.println(!digitalRead(SENSOR_3));
+	
+	Serial.print("\r\nSensor 4: ");
+	Serial.println(!digitalRead(SENSOR_4));
+
+}
+Timer procTimer;
 void init()
 {
 	pinMode(SENSOR_1, INPUT);
@@ -48,6 +63,7 @@ void init()
 	pinMode(SENSOR_4, INPUT);
 	pullup(SENSOR_4); //Default in 3,3V
 
+	procTimer.initializeMs(1000, readToSerial).start();
 
 	Serial.begin(SERIAL_BAUD_RATE); // 115200 by default
 	Serial.systemDebugOutput(true); // Enable debug output to serial
