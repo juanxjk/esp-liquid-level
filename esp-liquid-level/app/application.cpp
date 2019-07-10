@@ -6,6 +6,11 @@
 #define WIFI_PWD ""
 #endif
 
+#define SENSOR_1 5  // D1 - GPIO_5
+#define SENSOR_2 4  // D2 - GPIO_4
+#define SENSOR_3 14 // D5 - GPIO_14
+#define SENSOR_4 12 // D6 - GPIO_12
+
 HttpServer server;
 
 void onIndex(HttpRequest &request, HttpResponse &response)
@@ -31,6 +36,19 @@ void gotIP(IPAddress ip, IPAddress netmask, IPAddress gateway)
 
 void init()
 {
+	pinMode(SENSOR_1, INPUT);
+	pullup(SENSOR_1); //Default in 3,3V
+
+	pinMode(SENSOR_2, INPUT);
+	pullup(SENSOR_2); //Default in 3,3V
+
+	pinMode(SENSOR_3, INPUT);
+	pullup(SENSOR_3); //Default in 3,3V
+
+	pinMode(SENSOR_4, INPUT);
+	pullup(SENSOR_4); //Default in 3,3V
+
+
 	Serial.begin(SERIAL_BAUD_RATE); // 115200 by default
 	Serial.systemDebugOutput(true); // Enable debug output to serial
 
