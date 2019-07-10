@@ -43,10 +43,21 @@ float getWaterLevel()
 	}
 }
 
+void send_json_waterLevel(HttpRequest &request, HttpResponse &response)
+{
+	JsonObjectStream *stream = new JsonObjectStream();
+	JsonObject &json = stream->getRoot();
+
+	json["water_level"] = getWaterLevel();
+
+	response.sendDataStream(stream, MIME_JSON);
+}
+
 void startWebServer()
 {
 	server.listen(80);
 	server.paths.set("/", onIndex);
+	server.paths.set("/api/water_level", send_json_waterLevel);
 
 	Serial.println("\r\n=== WEB SERVER STARTED ===");
 	Serial.println(WifiStation.getIP());
