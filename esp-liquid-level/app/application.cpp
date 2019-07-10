@@ -19,6 +19,30 @@ void onIndex(HttpRequest &request, HttpResponse &response)
 	response.sendString("Server is running.");
 }
 
+float getWaterLevel()
+{
+	bool sensor1 = !digitalRead(SENSOR_1);
+	bool sensor2 = !digitalRead(SENSOR_2);
+	bool sensor3 = !digitalRead(SENSOR_3);
+	bool sensor4 = !digitalRead(SENSOR_4);
+	if (sensor1)
+	{
+		if (sensor2)
+		{
+			if (sensor3)
+			{
+				if (sensor4)
+				{
+					return 100.00;
+				}
+				return 75.00;
+			}
+			return 50.00;
+		}
+		return 25.00;
+	}
+}
+
 void startWebServer()
 {
 	server.listen(80);
