@@ -21,10 +21,10 @@ void onIndex(HttpRequest &request, HttpResponse &response)
 
 float getWaterLevel()
 {
-	bool sensor1 = !digitalRead(SENSOR_1);
-	bool sensor2 = !digitalRead(SENSOR_2);
-	bool sensor3 = !digitalRead(SENSOR_3);
-	bool sensor4 = !digitalRead(SENSOR_4);
+	bool sensor1 = digitalRead(SENSOR_1);
+	bool sensor2 = digitalRead(SENSOR_2);
+	bool sensor3 = digitalRead(SENSOR_3);
+	bool sensor4 = digitalRead(SENSOR_4);
 	if (sensor1)
 	{
 		if (sensor2)
@@ -71,17 +71,19 @@ void gotIP(IPAddress ip, IPAddress netmask, IPAddress gateway)
 void readToSerial()
 {
 	Serial.print("\r\nSensor 1: ");
-	Serial.println(!digitalRead(SENSOR_1));
+	Serial.println(digitalRead(SENSOR_1));
 
 	Serial.print("\r\nSensor 2: ");
-	Serial.println(!digitalRead(SENSOR_2));
+	Serial.println(digitalRead(SENSOR_2));
 
 	Serial.print("\r\nSensor 3: ");
-	Serial.println(!digitalRead(SENSOR_3));
+	Serial.println(digitalRead(SENSOR_3));
 	
 	Serial.print("\r\nSensor 4: ");
-	Serial.println(!digitalRead(SENSOR_4));
+	Serial.println(digitalRead(SENSOR_4));
 
+	Serial.print("\r\nWater_level: ");
+	Serial.println(getWaterLevel());
 }
 Timer procTimer;
 void init()
