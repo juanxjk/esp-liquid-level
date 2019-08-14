@@ -49,7 +49,7 @@ void send_json_waterLevel(HttpRequest &request, HttpResponse &response)
 	JsonObject &json = stream->getRoot();
 
 	json["water_level"] = getWaterLevel();
-
+	response.setAllowCrossDomainOrigin("*");
 	response.sendDataStream(stream, MIME_JSON);
 }
 
