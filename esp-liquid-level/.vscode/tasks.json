@@ -1,0 +1,26 @@
+{
+  "version": "0.1.0",
+  "command": "make",
+  "isShellCommand": true,
+  "showOutput": "always",
+  "echoCommand": true,
+  "suppressTaskName": true,
+  "tasks": [
+    {
+      "taskName": "Build",
+      "isBuildCommand": true
+    },
+    {
+      "taskName": "Clean",
+      "args": [
+        "clean"
+      ]
+    },
+    {
+      "taskName": "Flash",
+      "args": [
+        "flash"
+      ]
+    }
+  ]
+}
